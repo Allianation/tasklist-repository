@@ -11,6 +11,14 @@ const Home = () => {
 	const [successMessage, setSuccessMessage] = useState('');
 
 	useEffect(() => {
+		// Cargar tareas desde localStorage al montar el componente
+		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+		setTasks(storedTasks);
+	  }, []);
+
+	useEffect(() => {
+		// Guardar tareas en localStorage cuando cambian
+		localStorage.setItem('tasks', JSON.stringify(tasks));
 		console.log('La lista se ha actualizado: ', tasks);
 	}, [tasks]);
 
